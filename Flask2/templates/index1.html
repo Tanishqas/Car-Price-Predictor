@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head xmlns="http://www.w3.org/1999/xhtml">
+    <meta charset="UTF-8">
+    <title> Responsive Registration Form | CodingLab </title>
+    <link rel="stylesheet" href="static/static.css">
+    <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+
+
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+
+   <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+}
+:root{
+    --bg-color: #1f242d;
+    --second-bg-color:#323946;
+    --text-color:#fff;
+    --main-color: #754ef9;
+    }
+body{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: var(--second-bg-color);
+}
+.container{
+  max-width: 700px;
+  width: 100%;
+  height: 90%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+.container .title{
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  position: relative;
+  text-align: center;
+}
+.container .title::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 40%;
+  margin-left: 192px;
+  border-radius: 5px;
+  background: var(--main-color);
+}
+.content form .user-details{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+form .user-details .input-box{
+  margin-bottom: 25px;
+  width: calc(100% / 2 - 20px);
+}
+form .input-box span.details{
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.user-details .input-box input{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+  border-color: var(--main-color);
+}
+ form .gender-details .gender-title{
+  font-size: 20px;
+  font-weight: 500;
+ }
+ form .category{
+   display: flex;
+   width: 80%;
+   margin: 14px 0 ;
+   justify-content: space-between;
+ }
+ form .category label{
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+ }
+ form .category label .dot{
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background: #d9d9d9;
+  border: 5px solid transparent;
+  transition: all 0.3s ease;
+}
+ #dot-1:checked ~ .category label .one,
+ #dot-2:checked ~ .category label .two,
+ #dot-3:checked ~ .category label .three{
+   background: #9b59b6;
+   border-color: #d9d9d9;
+ }
+ form input[type="radio"]{
+   display: none;
+ }
+ form .button{
+   height: 45px;
+   margin: 35px 0
+ }
+ form .button input{
+   height: 100%;
+   width: 100%;
+   border-radius: 5px;
+   margin-top: -40px;
+   margin-left: 200px;
+   border: none;
+   color: #fff;
+   font-size: 18px;
+   font-weight: 500;
+   letter-spacing: 1px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   background: var(--main-color);
+ }
+ .predictions{
+    text-align: center;
+    margin-left: 6rem;
+ }
+ #kms{
+  justify-content: center;
+  align-items: center;
+  margin-left: 190px;
+ }
+ form .button input:hover{
+  /* transform: scale(0.99); */
+  background: linear-gradient(-135deg, #754ef9, #9b59b6);
+  }
+ @media(max-width: 584px){
+ .container{
+  max-width: 100%;
+}
+form .user-details .input-box{
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  form .category{
+    width: 100%;
+  }
+  .content form .user-details{
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  .user-details::-webkit-scrollbar{
+    width: 5px;
+  }
+  }
+  @media(max-width: 459px){
+  .container .content .category{
+    flex-direction: column;
+  }
+}
+
+   </style>
+   
+<body>
+  <div class="container">
+    <div class="title">Car Price Predictor</div>
+    <div class="content">
+      <form method="post" accept-charset="utf-8" name="Modelform">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Select the Company</span>
+            <select class="selectpicker form-control" id="company" name="company"  required="1"
+            onchange="load_car_models(this.id,'car_models')">
+            {% for company in companies %}
+            <option value="{{ company }}">{{ company }}</option>
+            {% endfor %}
+        </select>
+            <!-- <input type="text" placeholder="Se" required> -->
+          </div>
+          <div class="input-box">
+            <span class="details">Select the Model</span>
+            <select class="selectpicker form-control" id="car_models" name="car_model"  required="1">
+              {% for model in car_models %}
+              <option value="{{ model }}">{{ model }}</option>
+              {% endfor %}
+            </select>
+            <!-- <input type="text" placeholder="Enter your username" required> -->
+          </div>
+          <div class="input-box">
+            <span class="details">Select the year of Purchase</span>
+            <select class="selectpicker form-control" id="year" name="year" required="1">
+              {% for year in years %}
+              <option value="{{ year }}">{{ year }}</option>
+              {% endfor %}
+          </select>
+            <!-- <input type="text" placeholder="Enter your email" required> -->
+          </div>
+          <div class="input-box">
+            <span class="details">Select the fuel type</span>
+            <select class="selectpicker form-control" id="fuel_type" name="fuel_type" required="1">
+              {% for fuel in fuel_types %}
+              <option value="{{ fuel }}">{{ fuel }}</option>
+              {% endfor %}
+          </select>
+            <!-- <input type="text" placeholder="Enter your number" required> -->
+          </div>
+          <div class="input-box" id="kms">
+            <span class="details" style="text-align: center;">Enter the Kilometers Driven</span>
+            <input type="text"  placeholder="              Enter the kilometres"  name = "kilo_driven"  required>
+          </div>
+         
+      
+        <div class="button">
+          <input type = "submit" onclick="send_data()" value="Predict">
+        </div>
+      </form>
+
+      
+        <div class="predictions" >
+            <h2><span id="prediction"></span></h2>
+        </div>
+    </div>
+    </div>
+  </div>
+
+
+  <script>
+  
+    function load_car_models(company_id,car_model_id)
+      {
+          var company=document.getElementById(company_id);
+          var car_model= document.getElementById(car_model_id);
+          console.log(company.value);
+          car_model.value="";
+          car_model.innerHTML="";
+           {% for company in companies %}
+            if(company.value == "{{company}}")
+            {
+              {% for model in car_models %}
+                    {% if company in model %}
+
+                        var newOption= document.createElement("option");
+                        newOption.value="{{ model }}";
+                        newOption.innerHTML="{{ model }}";
+                        car_model.options.add(newOption);
+                    {% endif %}
+                {% endfor %}
+            }
+            {% endfor %}
+      }
+
+
+      function form_handler(event) {
+        event.preventDefault(); // Don't submit the form normally
+    }
+    function send_data()
+    {
+        document.querySelector('form').addEventListener("submit",form_handler);
+
+        var fd=new FormData(document.querySelector('form'));
+
+        var xhr= new XMLHttpRequest({mozSystem: true});
+
+        xhr.open('POST','/predict',true);
+        document.getElementById('prediction').innerHTML="Wait! Predicting Price.....";
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == XMLHttpRequest.DONE){
+                document.getElementById('prediction').innerHTML="Predicted Price: ₹"+xhr.responseText;
+
+            }
+        };
+
+        xhr.onload= function(){};
+
+        xhr.send(fd);
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+  crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>
